@@ -1,0 +1,54 @@
+# --- local secrets & config (NEVER commit) ---
+.env
+.env.*
+*.key
+*.pem
+*.json.key
+credentials.json
+service_account.json
+cookies*.json
+secrets/
+config/settings.yaml
+config/profile.yaml
+config/*.local.yaml
+
+# --- generated data, outputs, backups ---
+data/
+manual_apply/
+samples/
+project-backup.zip
+*.zip
+fix_and_push.py
+bundle/
+CHANGES.md
+README-FIRST.md
+jobagent-fixes/
+*.db
+*.sqlite
+*.bak
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+build/
+.DS_Store
+node_modules/
+
+# --- local helper scripts / delivery bundles (Windows + VS Code only) ---
+*.ps1
+deploy-key.ps1
+fix-403.ps1
+run-this.ps1
+run-this (1).ps1
+windows-quickstart.ps1
+push-to-github.ps1
+clean-push.ps1
+scrub-and-push.ps1
+finish-push.ps1
+FINAL-push.ps1
+PUSH-FIXES.ps1
+LOCAL-ONLY/
+jobagent-fixes.zip

@@ -1,0 +1,108 @@
+# ============================================================
+#  AGENT SETTINGS - PUBLIC EXAMPLE (no secrets)
+#  Copy this file to config/settings.yaml and fill in real values.
+#  config/settings.yaml is gitignored: it never leaves your PC.
+#  You can also use environment variables (GEMINI_API_KEY,
+#  SMTP_APP_PASSWORD, NOTIFY_EMAIL) instead of writing secrets here.
+# ============================================================
+
+search:
+  sources: [myjobmag, brightermonday, fuzu, remotive, remoteok, whatsapp]  # Kenya + remote + your WhatsApp channels
+  # Kenya-focused queries (used on MyJobMag) - tune to your target roles
+  queries: ["ICT officer", "IT support", "data analyst", "business analyst",
+            "software developer", "web developer", "graduate trainee ICT",
+            "ICT intern"]
+  max_drafts_per_run: 20        # how many drafts to prepare per run
+  min_match_score: 30           # 0-100; below this, jobs are skipped
+  fetch_job_details: true       # open each promising job's page for full info
+  polite_delay_seconds: 1.5     # be respectful to websites
+  # Strict freshness gate: only dated, open-looking jobs from the last week
+  # are drafted. A site with no reliable listing date is skipped rather than
+  # being mislabelled as a fresh vacancy.
+  max_job_age_days: 7
+  require_posted_date: true
+  # Experience-level gate: only jobs matching your level are drafted
+  # (internships, attachments, graduate trainee, entry level, or jobs asking
+  # for at most this many years). Senior/lead/manager titles are skipped.
+  # Set to null to turn the gate off.
+  max_experience_years: 2
+  # true = ALSO skip jobs that state no years AND show no intern/graduate/
+  # entry-level wording (strictest). false = such jobs are still allowed.
+  require_entry_signal: false
+
+# --- AI writing (the "smart" drafting) ---
+# To enable: get a FREE Gemini API key at https://aistudio.google.com/apikey
+# (current keys start with AQ. - legacy ones started with AIza).
+# Paste it below, or set the GEMINI_API_KEY environment variable.
+# Without a real key the agent uses the built-in template engine.
+llm:
+  provider: gemini              # gemini | openai | none
+  api_key: "REPLACE_ME"
+  model: gemini-3.8-flash   # current stable model; 3.6-flash is being retired
+
+# --- Sending applications (Phase 2 - needs your approval flow first) ---
+# Applications are sent FROM the email on your CV so employers reply there.
+# SECURITY: never put your normal Gmail password here. Use an App Password:
+# Google Account -> Security -> 2-Step Verification -> App passwords (16 chars).
+email:
+  smtp_host: "smtp.gmail.com"
+  smtp_port: 587
+  username: "REPLACE_ME"
+  app_password: "REPLACE_ME"   # Gmail App Password (revocable anytime)
+  from_name: "REPLACE_ME"
+  application_cc: "REPLACE_ME"  # visible copy on every application; set "" to disable
+
+# --- Notifications ---
+notify:
+  email_to: "REPLACE_ME"   # where digests about applied jobs are sent
+  digest_subject: "REPLACE_ME"
+
+# --- CV / letter PDF look (exactly as the employer receives it) ---
+cv_style:
+  font: "times"          # Times New Roman (PDF standard Times)
+  font_size: 12          # strict size 12
+  line_spacing: 1.1      # professional fit, keeps the CV to 3 A4 pages
+  heading_color: "black" # black | navy
+  # Section headings are bold with space above and below. No separating
+  # lines or rules are ever drawn in the CV.
+
+# --- Dashboard ---
+dashboard:
+  port: 7860        # change if another program already uses 7860, then restart
+
+# --- Autopilot (runs INSIDE the dashboard process) ---
+schedule:
+  enabled: true
+  # "interval" = search every N hours (catches fresh jobs before the crowd)
+  # "daily"    = one fixed-time run per day
+  mode: "interval"
+  interval_hours: 0.5          # check every 30 minutes while the dashboard runs
+  run_on_startup: true         # do one check immediately when the dashboard starts
+  time: "07:00"            # used when mode: "daily"
+  retry_template_drafts_with_ai: true
+  # Put the address your PHONE can reach, e.g.:
+  #   same WiFi at home:  "http://192.168.1.50:7860"
+  #   anywhere via tunnel: "https://your-tunnel.trycloudflare.com"
+  # It is added to notification emails as tappable links.
+  base_url: "REPLACE_ME"
+
+# --- WhatsApp job-channel inbox ---
+# WhatsApp Channels have no API, so you copy the channel's messages and paste
+# them into the dashboard's "WhatsApp inbox" page (or the file below). The agent
+# keeps the real vacancies, throws away greetings/jokes/forwards/chatter, then
+# drafts a CV + letter for each. Works with or without an AI key (AI is better).
+whatsapp:
+  enabled: true
+  inbox_file: "data/whatsapp_inbox.txt"   # drop file the scheduled run reads
+  media_dir: "data/whatsapp_media"        # save screenshots/photos of IMAGE adverts here
+  use_ai: true                            # let the AI read the messy text (needs llm.api_key)
+  assume_posted_today: true               # undated adverts are treated as fresh (you just pasted them)
+  enrich_links: true                      # follow MyJobMag/BrighterMonday/Fuzu links for the full advert
+
+# --- Web application auto-fill (browser agent) ---
+web_apply:
+  show_browser: true      # on your PC: the browser window opens so you WATCH it work
+                          # and can complete any field it can't; you submit the final form yourself
+  human_wait_minutes: 5   # how long it waits for you before parking the application
+  review_wait_minutes: 15 # time to review the filled form and click Submit yourself
+

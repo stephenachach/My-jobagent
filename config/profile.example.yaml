@@ -1,0 +1,73 @@
+# Example CV profile - PUBLIC template, no real personal data.
+# Copy this file to config/profile.yaml (gitignored) and fill in your own details.
+# The real CV profile stays local and gitignored: config/profile.yaml.
+# Write plainly, the way a person writes. The renderer adds bold headings and
+# single round dot bullets; never use markdown, hyphens as bullets, decorative
+# brackets or pipes. Keep real product names such as M-Pesa as they are.
+name: YOUR FULL NAME
+email: you@example.com
+phone: '+254 7XX XXX XXX'
+location: Nairobi, Kenya
+linkedin: ''
+headline: ICT Support and Business Technology Professional
+career_summary: 'I am a business technology graduate based in Nairobi and available to start immediately. My experience covers first line ICT support, system rollouts, user training and clear documentation. I have also built my own small projects, which are described under SELECTED PROJECTS.'
+target_roles:
+- ICT Support
+- ICT Officer
+- IT Support
+- ICT Intern
+- Graduate Trainee
+- Junior Software Developer
+- Helpdesk
+skills_technical:
+- I have applied these skills while building my own projects, which are described under SELECTED PROJECTS
+- First line IT support and troubleshooting of computers, printers and software
+- Installing, configuring and upgrading systems and peripheral devices
+- Software updates, patches and antivirus management
+- Google Workspace and Microsoft Office, including Excel formulas and PivotTables
+- Web development with your real stack
+skills_people:
+- Training and coaching new team members
+- Clear written and verbal communication
+- Working independently, prioritising tasks and delivering on time
+experience:
+- title: YOUR JOB TITLE
+  org: YOUR EMPLOYER
+  period: 2025 to Present
+  tags: [support, default]
+  bullets:
+  - Describe what you did in one plain sentence.
+  - Add a second real responsibility here.
+education:
+- degree: YOUR DEGREE
+  institution: YOUR INSTITUTION
+  period: 2022 to 2026
+  detail: 'Graduated in 2026. Mention the relevant modules you studied.'
+academic_project:
+  title: YOUR FINAL YEAR PROJECT
+  period: '2025'
+  bullets:
+  - Describe the project in one plain sentence.
+  - List the real tools you used.
+projects:
+- title: ADD YOUR REAL PROJECT NAME HERE
+  period: '2026'
+  tech: Python, Flask, SQLite
+  link_label: Code
+  link: https://github.com/your-account/your-repo
+  bullets:
+  - Describe what the project does in one plain sentence.
+  - Describe what you built with the real tools you used.
+additional_info:
+- 'Languages: English and Kiswahili, both fluent.'
+- 'Portfolio: https://your-portfolio.example.com/'
+- 'Based in Nairobi and available for interviews any day.'
+references:
+- company: YOUR REFEREE COMPANY
+  person: REFEREE NAME
+  role: REFEREE ROLE
+  phone: '+254 7XX XXX XXX'
+preferences:
+  locations: [Nairobi, Kenya, Remote]
+  remote_ok: true
+  exclude_keywords: [director, head of, phd, chief]
